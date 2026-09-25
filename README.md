@@ -31,7 +31,7 @@ $$
 
 <p align="center"><img src="image/image3.png" width="500">
 
-- For customization style transfer, we replace the mid-frequency bands of the background in the style reference with those from the foreground of the customized reference via mid-frequency replacing layer:
+- For customization style transfer, we replace the **mid-frequency bands** of the background in the style reference with those from the foreground of the customized reference via mid-frequency replacing layer:
 
 $$
 \begin{aligned}
@@ -53,7 +53,7 @@ V^{m_{mid}}_{im_{cust}}
 $$
 
 
-- For color style transfer, we replace the low-frequency bands of the background in the style reference with those from the foreground and the background of the color reference via low-frequency replacing layer:
+- For color style transfer, we replace the **low-frequency bands** of the background in the style reference with those from the foreground and the background of the color reference via low-frequency replacing layer:
   
 $$
 \begin{aligned}
@@ -114,13 +114,13 @@ https://github.com/htyjers/Dual-FDM/blob/ec04b133b12fa324cc640651fb62c7edaaa2eca
 
 
 - Quantitative results.
-![](image/table1.png)
-![](image/table2.png)
+<p align="center"><img src="image/table1.png" width="800">
+<p align="center"><img src="image/table2.png" width="800">
 
 - Ablation Studies
-![](image/image6.png)
-![](image/image7.png)
-![](image/table3.png)
+<p align="center"><img src="image/image6.png" width="800">
+<p align="center"><img src="image/image7.png" width="800">
+<p align="center"><img src="image/table3.png" width="800">
 
 
 #
