@@ -11,7 +11,76 @@ This repository is the official code for the paper "Disentangling Dual Image Ref
 
 In this paper, we study personalized generation based on dual references - customization and color and style reference - and propose a paradigm to disentangle these Dual image references within Frequency-aware Diffusion Models, dubbed **Dual-FDM**, to simultaneously tackle two crucial personalized image generation tasks: customization style transfer and color style transfer, by disentangling different frequency bands via mask strategy within frequency domain. For customization style transfer,  we replace the mid-frequency band of the background in the style reference with that from the foreground of the customized reference. For color style transfer, we substitute the low-frequency band of the background in the style reference with that from both the foreground and background of the color reference. Both the substituted frequency bands are used as the key and value to reconstruct the query foreground and background of the denoised personalized image. We further compute the ratio of information entropy of the substituted frequency bands to adaptively modulate the denoising timesteps between the early and late stages. Extensive experiments validate the superiority of **Dual-FDM** over the state-of-the-art diffusion models for  personalized image generation. Our code can be accessed from the supplementary material package.
 
+- Larger $\sigma_i$ tend to correspond to the foreground, whereas smaller $\sigma_i$ are more likely associated with the background. To suppress the foreground components and enhance the background components, we invert the singular values and construct the background matrix $\bar{W}_k^{im}$ as follows.
 
+$$
+\begin{aligned}
+\overline{W}_k^{im}
+&=
+U \mathrm{diag}
+\left(
+\frac{1}{\sigma_1},
+\frac{1}{\sigma_2},
+\dots,
+\frac{1}{\sigma_{d_{im}}}
+\right)
+V^T,
+\quad \sigma_i \neq 0.
+\end{aligned}
+$$
+
+<p align="center"><img src="image/image3.png" width="500">
+
+- For customization style transfer, we replace the mid-frequency bands of the background in the style reference with those from the foreground of the customized reference via mid-frequency replacing layer:
+
+$$
+\begin{aligned}
+K^{m_{mid}}_{im_{cust}}
+&=
+\mathrm{IDCT}\Big(
+\mathrm{DCT}(C_{cu} W_k^{im}) \odot m_{mid}
++
+\mathrm{DCT}(C_{st} \overline{W}_k^{im}) \odot (1-m_{mid})
+\Big), \\
+V^{m_{mid}}_{im_{cust}}
+&=
+\mathrm{IDCT}\Big(
+\mathrm{DCT}(C_{cu} W_v^{im}) \odot m_{mid}
++
+\mathrm{DCT}(C_{st} W_v^{im}) \odot (1-m_{mid})
+\Big).
+\end{aligned}
+$$
+
+
+- For color style transfer, we replace the low-frequency bands of the background in the style reference with those from the foreground and the background of the color reference via low-frequency replacing layer:
+  
+$$
+\begin{aligned}
+K^{m_{low}}_{im_{cost}}
+&=
+\mathrm{IDCT}\Big(
+\mathrm{DCT}\left(
+C_{co}\left(
+\frac{W_k^{im}+\overline{W}_k^{im}}{2}
+\right)
+\right)
+\odot m_{low}
++
+\mathrm{DCT}(C_{st}\overline{W}_k^{im})
+\odot (1-m_{low})
+\Big), \\
+V^{m_{low}}_{im_{cost}}
+&=
+\mathrm{IDCT}\Big(
+\mathrm{DCT}(C_{co}W_v^{im})
+\odot m_{low}
++
+\mathrm{DCT}(C_{st}W_v^{im})
+\odot (1-m_{low})
+\Big).
+\end{aligned}
+$$
 
 ![](image/image2.png)
 <p align="center">Figure 2. Illustration of our proposed Dual-FDM pipeline.</p>
