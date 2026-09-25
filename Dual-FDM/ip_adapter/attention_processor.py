@@ -417,7 +417,6 @@ class IPAttnProcessor2_0(torch.nn.Module):
             value_content = self.to_v_ip(ip_hidden_states).float()
             value_content_dct = dct(value_content, norm='ortho')
 
-            # 高频来自style，低频来自content
             merged_dct_mid = low_pass(value_style_dct, 0.15)\
                              + high_pass(low_pass(value_content_dct, 0.9), 0.15) \
                              + high_pass(value_style_dct, 0.9)
@@ -482,11 +481,9 @@ class IPAttnProcessor2_0(torch.nn.Module):
         #     value_content = self.to_v_ip(ip_hidden_states).float()
         #     value_content_dct = dct(value_content, norm='ortho')
         #
-        #     # 高频来自style，低频来自content
         #     merged_dct_high = low_pass(value_content_dct, 0.8) + high_pass(value_style_dct, 0.8)
         #     self.style_matrix = idct(merged_dct_high, norm='ortho')
         #
-        #     # 低频来自style，高频来自content（反向组合）
         #     merged_dct_low = high_pass(value_style_dct, 0.05) + low_pass(value_content_dct, 0.05)
         #     self.style_matrix2 = idct(merged_dct_low, norm='ortho')
         #
