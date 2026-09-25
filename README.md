@@ -100,10 +100,10 @@ $$
 Python3 test.py
 ```
 * For customization style transfer, enable the corresponding code block below:
-https://github.com/htyjers/Dual-FDM/blob/ec04b133b12fa324cc640651fb62c7edaaa2eca8/Dual-FDM/ip_adapter/attention_processor.py#L407-L470
+https://github.com/htyjers/Dual-FDM/blob/d7383509274d7bf09368951dd8cba90e4a93cf48/Dual-FDM/ip_adapter/attention_processor.py#L407-L469
 
 * For color style transfer, enable the corresponding code block below:
-https://github.com/htyjers/Dual-FDM/blob/ec04b133b12fa324cc640651fb62c7edaaa2eca8/Dual-FDM/ip_adapter/attention_processor.py#L472-L532
+https://github.com/htyjers/Dual-FDM/blob/8e973222453ba475bd2b46c68db5f95a33c1757f/Dual-FDM/ip_adapter/attention_processor.py#L471-L527
 
 
 #
