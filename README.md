@@ -131,7 +131,7 @@ If any part of our paper and repository is helpful to your work, please generous
 ```
 @inproceedings{liu2026disentangling,
 title={Disentangling Dual Image References in Frequency Aware Diffusion Models for Personalized Generation},
-author={Anonymous},
+author={Haipeng Liu and Yang Wang and Meng Wang},
 booktitle={The Fortieth Annual Conference on Neural Information Processing Systems},
 year={2026},
 url={https://openreview.net/forum?id=l5xRQDiYkv}
