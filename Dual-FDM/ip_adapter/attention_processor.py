@@ -502,17 +502,15 @@ class IPAttnProcessor2_0(torch.nn.Module):
         #
         #     lambda_ = 0
         #     S_mod = 1 / torch.sqrt(S_k ** 2 + lambda_)
-        #     S_mod1 = (S_k + S_mod) / 2# * 3 / 4
+        #     S_mod1 = (S_k + S_mod) / 2
         #     # print(S_mod1)
         #     transform_content = Vh_k.T @ torch.diag_embed(S_mod1).T @ U_k.T
         #     content_proj = ip_hidden_states.float() @ transform_content
         #     content_proj_dct = dct(content_proj, norm='ortho')
         #
-        #     # 高频来自style，低频来自content
         #     merged_dct_high_svd = low_pass(content_proj_dct, 0.8) + high_pass(style_proj_dct, 0.8)
         #     self.style_matrix1 = idct(merged_dct_high_svd, norm='ortho')
         #
-        #     # 低频来自style，高频来自content
         #     merged_dct_low_svd = high_pass(style_proj_dct, 0.05) + low_pass(content_proj_dct, 0.05)
         #     self.style_matrix3 = idct(merged_dct_low_svd, norm='ortho')
         #
