@@ -9,7 +9,7 @@ This repository is the official code for the paper "Disentangling Dual Image Ref
 #
 ## Introduction
 
-In this paper, we study personalized generation based on dual references - customization and color and style reference - and propose a paradigm to disentangle these Dual image references within Frequency-aware Diffusion Models, dubbed **Dual-FDM**, to simultaneously tackle two crucial personalized image generation tasks: customization style transfer and color style transfer, by disentangling different frequency bands via mask strategy within frequency domain. For customization style transfer,  we replace the mid-frequency band of the background in the style reference with that from the foreground of the customized reference. For color style transfer, we substitute the low-frequency band of the background in the style reference with that from both the foreground and background of the color reference. Both the substituted frequency bands are used as the key and value to reconstruct the query foreground and background of the denoised personalized image. We further compute the ratio of information entropy of the substituted frequency bands to adaptively modulate the denoising timesteps between the early and late stages. Extensive experiments validate the superiority of **Dual-FDM** over the state-of-the-art diffusion models for  personalized image generation. Our code can be accessed from the supplementary material package.
+In this paper, we study personalized generation based on dual references - customization and color and style reference - and propose a paradigm to disentangle these Dual image references within Frequency-aware Diffusion Models, dubbed **Dual-FDM**, to simultaneously tackle two crucial personalized image generation tasks: customization style transfer and color style transfer, by disentangling different frequency bands via mask strategy within frequency domain. For customization style transfer,  we replace the mid-frequency band of the background in the style reference with that from the foreground of the customized reference. For color style transfer, we substitute the low-frequency band of the background in the style reference with that from both the foreground and background of the color reference. Both the substituted frequency bands are used as the key and value to reconstruct the query foreground and background of the denoised personalized image. We further compute the ratio of information entropy of the substituted frequency bands to adaptively modulate the denoising timesteps between the early and late stages. Extensive experiments validate the superiority of **Dual-FDM** over the state-of-the-art diffusion models for  personalized image generation.
 
 - Larger $\sigma_i$ tend to correspond to the foreground, whereas smaller $\sigma_i$ are more likely associated with the background. To suppress the foreground components and enhance the background components, we invert the singular values and construct the background matrix $\bar{W}_k^{im}$ as follows.
 
@@ -93,9 +93,15 @@ $$
 ## Inference
    
 1. Pre-trained models:
-[RealVisXL_V5.0](https://huggingface.co/SG161222/RealVisXL_V5.0)
+* [RealVisXL_V5.0](https://huggingface.co/SG161222/RealVisXL_V5.0)
+
+* [IP-Adapter Plus](https://github.com/tencent-ailab/IP-Adapter)
+
+2. Dataset
+* The text prompts of Image 1 + Text prompts + Image 1 path + Image 2 path + Save output path
+https://github.com/htyjers/Dual-FDM/blob/169d3e4d1bdd25568adaadf5d665c8399eb863e2/Dual-FDM/test.py#L39
   
-2. Run the following command:
+3. Run the following command:
 ```
 Python3 test.py
 ```
