@@ -101,7 +101,7 @@ $$
 
 2. Input template
 ```
-The entity of Image 1 + Text prompts + Image 1 path + Image 2 path + Save output path
+The entity of Image 1 + Text prompts + Image 1 path (Customizated / Color reference) + Image 2 path (Style reference) + Save output path
 ```
 https://github.com/htyjers/Dual-FDM/blob/169d3e4d1bdd25568adaadf5d665c8399eb863e2/Dual-FDM/test.py#L39
 
